@@ -1,0 +1,148 @@
+import type { Template } from '../../types/template'
+import { cta, defineTemplate, features, footer, hero, navbar, showcase, story, testimonials } from '../builders'
+
+const img = (file: string) => `/images/riptide/${file}`
+
+export const sportsTemplates: Template[] = [
+  defineTemplate({
+    slug: 'riptide-swim-academy',
+    name: 'Riptide Swim Academy',
+    tagline: 'Learn to swim, compete and thrive',
+    description:
+      'A bold, energetic template for swimming academies and aquatic clubs. Showcase learn-to-swim and squad programmes, coaches, parent reviews and easy free-trial enrolment.',
+    category: 'sports',
+    tags: ['swimming', 'academy', 'sports', 'kids', 'coaching'],
+    price: 'free',
+    popularity: 79,
+    createdAt: '2026-10-20',
+    isNew: true,
+    author: 'Templates Studio',
+    highlights: ['Programme cards for every age and level', 'Parent and swimmer reviews', 'Free-trial call to action', 'Responsive, energetic design'],
+    includedPages: ['Home', 'Programmes', 'Coaches', 'Timetable', 'Contact'],
+    theme: {
+      primary: '#0c4a8a',
+      primaryText: '#ffffff',
+      secondary: '#e8f3fd',
+      background: '#ffffff',
+      text: '#0b2a4a',
+      muted: '#5b6b7d',
+      radius: 'soft',
+      headingFont: 'sans',
+    },
+    sections: [
+      navbar({
+        brand: 'Riptide',
+        subtitle: 'Swimming Academy',
+        icon: 'waves',
+        layout: 'academy',
+        links: ['Home', 'About Us', 'Programs', 'Classes', 'Coaches', 'Gallery', 'Blog', 'Contact'],
+        phone: '(754) 555-0123',
+        cta: 'Book a Free Trial',
+      }),
+      hero({
+        layout: 'academy',
+        title: 'Build skills.\nBuild confidence.\nLove the water.',
+        subtitle: 'Premier swimming lessons for kids and adults of all ages and skill levels.',
+        primaryCta: 'Book a Free Trial',
+        secondaryCta: 'View Programs',
+        imageLabel: 'Young swimmer celebrating in the pool',
+        imageIcon: 'waves',
+        imageUrl: img('hero.jpg'),
+        imagePosition: 'center center',
+        benefits: [
+          { icon: 'award', title: 'Certified Coaches', description: 'Qualified and background-checked' },
+          { icon: 'shield', title: 'Safe & Clean Facilities', description: 'Lifeguard on deck' },
+          { icon: 'users', title: 'Small Class Sizes', description: 'Six swimmers per coach' },
+          { icon: 'star', title: 'All Skill Levels', description: 'From first splash to racing' },
+        ],
+      }),
+      showcase({
+        eyebrow: 'Programs for every swimmer',
+        title: 'Find the Perfect Class for You',
+        variant: 'cards',
+        layout: 'programs',
+        items: [
+          { title: 'Parent & Tot', tag: 'Ages 6 Mo – 3 Yrs', description: 'Introduce your little one to the water in a fun and safe environment.', linkLabel: 'Learn More', imageUrl: img('parent-and-tot.jpg'), icon: 'heart' },
+          { title: 'Learn to Swim', tag: 'Ages 4 – 12 Yrs', description: 'Build water confidence and learn essential swimming skills step by step.', linkLabel: 'Learn More', imageUrl: img('learn-to-swim.jpg'), icon: 'smile' },
+          { title: 'Stroke Development', tag: 'Ages 6 – 18 Yrs', description: 'Improve technique in all four strokes and build endurance.', linkLabel: 'Learn More', imageUrl: img('stroke-development.jpg'), icon: 'award' },
+          { title: 'Swim Team Prep', tag: 'Ages 8 – 18 Yrs', description: 'Advanced training for competitive swimmers to reach their full potential.', linkLabel: 'Learn More', imageUrl: img('swim-team-prep.jpg'), icon: 'zap' },
+          { title: 'Adult Swim', tag: 'Ages 13+', description: "It's never too late to learn. Lessons customised for adults of all levels.", linkLabel: 'Learn More', imageUrl: img('adult-swim.jpg'), icon: 'users' },
+        ],
+      }),
+      story({
+        layout: 'split',
+        imageSide: 'left',
+        eyebrow: 'About Riptide',
+        title: 'More Than Just Swim Lessons',
+        description: 'At Riptide Swim Academy, we are dedicated to teaching life-saving skills, building confidence and inspiring a lifelong love for swimming.',
+        images: [{ imageUrl: img('about-underwater.jpg'), label: 'Swimmer training underwater' }],
+        quote: 'Confidence in the water, confidence for life.',
+        highlights: [
+          'Experienced & certified instructors',
+          'State-of-the-art indoor pool',
+          'Clean, safe and family-friendly environment',
+          'Flexible schedules to fit your life',
+        ],
+        buttonLabel: 'Learn More About Us',
+      }),
+      features({
+        layout: 'stats',
+        title: 'By the numbers',
+        items: [
+          { icon: 'users', title: '1,200+', description: 'Happy students' },
+          { icon: 'award', title: '15+', description: 'Years of excellence' },
+          { icon: 'shield', title: '25', description: 'Certified coaches' },
+          { icon: 'waves', title: '1', description: 'State-of-the-art facility' },
+        ],
+      }),
+      testimonials({
+        eyebrow: 'What parents are saying',
+        title: 'Trusted by Families Across the USA',
+        layout: 'carousel',
+        items: [
+          { quote: 'The instructors are amazing! My daughter went from scared of the water to loving every lesson. Highly recommend!', name: 'Jessica M.', role: 'Miami, FL', imageUrl: img('reviewer-jessica.jpg') },
+          { quote: 'Riptide has helped my son improve so much. The coaches are patient, supportive and truly care about the kids.', name: 'David R.', role: 'Austin, TX', imageUrl: img('reviewer-david.jpg') },
+          { quote: 'Clean facility, great structure and fantastic results. We couldn’t be happier with our experience!', name: 'Sarah L.', role: 'Orlando, FL', imageUrl: img('reviewer-sarah.jpg') },
+        ],
+      }),
+      cta({
+        layout: 'banner',
+        title: 'Ready to Make a Splash?',
+        subtitle: 'Book your free trial class today and take the first step toward confidence in the water!',
+        button: 'Book Your Free Trial',
+        tone: 'primary',
+        imageUrl: img('cta-kickboard.jpg'),
+      }),
+      footer({
+        brand: 'Riptide',
+        brandIcon: 'waves',
+        tagline: 'Building confident swimmers and stronger communities through quality swim education.',
+        variant: 'dark',
+        socialLinks: [
+          { platform: 'facebook', label: 'Facebook' },
+          { platform: 'instagram', label: 'Instagram' },
+          { platform: 'youtube', label: 'YouTube' },
+          { platform: 'pinterest', label: 'Pinterest' },
+        ],
+        columns: [
+          { title: 'Quick Links', links: ['Home', 'About Us', 'Programs', 'Classes', 'Coaches', 'Gallery', 'Blog', 'Contact'] },
+          { title: 'Programs', links: ['Parent & Tot', 'Learn to Swim', 'Stroke Development', 'Swim Team Prep', 'Adult Swim'] },
+          {
+            title: 'Contact Us',
+            links: [],
+            details: [
+              { icon: 'phone', text: '(754) 555-0123' },
+              { icon: 'mail', text: 'info@riptideswim.com' },
+              { icon: 'map-pin', text: '123 Water Way, Miami, FL 33101' },
+              { icon: 'clock', text: 'Mon – Fri: 6:00 AM – 8:00 PM' },
+              { icon: 'clock', text: 'Sat – Sun: 8:00 AM – 4:00 PM' },
+            ],
+          },
+        ],
+        newsletter: { placeholder: 'Your Email Address', buttonLabel: 'Subscribe' },
+        copyright: '© 2026 Riptide Swim Academy. All rights reserved.',
+        legalLinks: ['Privacy Policy', 'Terms of Service'],
+      }),
+    ],
+  }),
+]
