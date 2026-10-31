@@ -274,13 +274,13 @@ export function HeroSection({ props }: { props: HeroProps }) {
     )
     return (
       <section className="relative overflow-hidden" style={{ background: theme.background }}>
-        {device !== 'mobile' && (
+        {device === 'desktop' && (
           <>
             <div className="absolute inset-0">{image('h-full w-full object-cover')}</div>
             <div className="absolute inset-0" aria-hidden="true" style={{ background: `linear-gradient(90deg, ${theme.background} 0%, ${theme.background}f2 34%, ${theme.background}00 70%)` }} />
           </>
         )}
-        <div className={cn('relative z-10 mx-auto max-w-[1200px]', pick(device, { desktop: 'flex min-h-[460px] flex-col justify-center px-12 py-16', tablet: 'px-8 py-12', mobile: 'px-5 pt-10' }))}>
+        <div className={cn('relative z-10 mx-auto max-w-[1200px]', pick(device, { desktop: 'flex min-h-[460px] flex-col justify-center px-12 py-16', tablet: 'px-8 pt-12', mobile: 'px-5 pt-10' }))}>
           <div className="max-w-[500px]">
             <h2 className={cn('font-sans font-black uppercase leading-[1.02] tracking-tight', pick(device, { desktop: 'text-[56px]', tablet: 'text-5xl', mobile: 'text-[38px]' }))} style={{ color: theme.text }}>
               {lines.map((line, index) => (
@@ -454,7 +454,7 @@ export function HeroSection({ props }: { props: HeroProps }) {
           </div>
         </div>
         {props.benefits && (
-          <div className={cn('relative z-20 mx-auto -mt-12 grid max-w-[1100px] overflow-hidden rounded-2xl bg-white shadow-lift ring-1 ring-slate-900/5', px, device === 'desktop' ? cols(Math.min(props.benefits.length, 4)) : device === 'tablet' ? cols(Math.min(props.benefits.length, 3)) : cols(Math.min(props.benefits.length, 2)))}>
+          <div className={cn('relative z-20 mx-auto -mt-12 grid max-w-[1100px] overflow-hidden rounded-2xl bg-white shadow-lift ring-1 ring-slate-900/5', px, device === 'mobile' ? cols(Math.min(props.benefits.length, 2)) : props.benefits.length === 5 ? 'grid-cols-5' : cols(Math.min(props.benefits.length, 4)))}>
             {props.benefits.map((benefit, index) => (
               <article
                 key={benefit.title}

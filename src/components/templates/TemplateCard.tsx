@@ -65,8 +65,6 @@ export function TemplateCard({ template, subtitle }: Props) {
           </button>
           <Link
             to={`/templates/${template.slug}/full`}
-            target="_blank"
-            rel="noreferrer"
             className="inline-flex items-center gap-1 rounded text-brand-700 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-600"
           >
             Preview <ArrowUpRight size={14} />

@@ -7,7 +7,7 @@ import { templateBySlug } from '../data/templates'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 /** Hand-picked starting points, in display order. */
-const START_HERE_SLUGS = ['stillwater-yoga', 'riptide-swim-academy', 'ember-and-oak', 'medicore-hospital']
+const START_HERE_SLUGS = ['stillwater-yoga', 'riptide-swim-academy', 'ember-and-oak', 'luna-atelier']
 
 export default function HomePage() {
   useDocumentTitle()
