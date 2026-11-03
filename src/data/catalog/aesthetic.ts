@@ -49,7 +49,7 @@ export const aestheticTemplates: Template[] = [
         layout: 'signature',
         buttonLabel: 'Discover',
         items: [
-          { title: 'Apparatus', description: 'Precision devices that firm, tone and refresh the skin without downtime.', icon: 'zap', imageUrl: img('treatment-apparatus.webp') },
+          { title: 'Apparatus', description: 'Precision devices that firm, tone and refresh the skin without downtime.', icon: 'zap', imageUrl: img('treatment-apparatus.webp'), textInset: '1.25rem' },
           { title: 'Injection', description: 'Targeted injectables that smooth lines and restore natural volume.', icon: 'stethoscope', imageUrl: img('treatment-injection.webp') },
           { title: 'Skin', description: 'Advanced skin treatments to rejuvenate, restore and refresh.', icon: 'leaf', imageUrl: img('treatment-skin.webp') },
           { title: 'Facial', description: 'Custom facials that deeply cleanse, hydrate and enhance your glow.', icon: 'flower', imageUrl: img('treatment-facial.webp') },
@@ -58,6 +58,7 @@ export const aestheticTemplates: Template[] = [
       }),
       story({
         layout: 'about',
+        buttonLabel: 'Learn more',
         eyebrow: 'About the clinic',
         title: 'About the Clinic',
         description: 'Lumen is a space for aesthetics and professional care. We combine advanced technologies, an expert team and a personalized approach to your beauty at every stage.',

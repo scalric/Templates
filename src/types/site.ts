@@ -84,7 +84,7 @@ export interface StoryProps {
   eyebrow: string
   title: string
   description: string
-  images: { imageUrl: string; label: string; imagePosition?: string }[]
+  images: { imageUrl: string; label: string; imagePosition?: string; aspect?: string }[]
   quote: string
   stats?: { icon: IconName; value: string; label: string }[]
   highlights?: string[]
@@ -108,6 +108,8 @@ export interface ShowcaseItem {
   imagePosition?: string
   /** Photo proportions, e.g. "1514 / 1039". Overrides the card image aspect. */
   aspect?: string
+  /** Left padding of the text block in the signature layout, e.g. "1.25rem". */
+  textInset?: string
 }
 
 export interface ShowcaseProps {

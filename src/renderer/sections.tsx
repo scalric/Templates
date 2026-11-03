@@ -521,7 +521,7 @@ export function HeroSection({ props }: { props: HeroProps }) {
           </div>
         </div>
         {device !== 'desktop' && (
-          <div className={cn('relative overflow-hidden', device === 'mobile' ? 'h-[300px]' : 'h-[380px]')}>{image('h-full w-full object-cover')}</div>
+          <div className={cn('relative overflow-hidden', props.imageAspect === 'portrait' ? undefined : device === 'mobile' ? 'h-[300px]' : 'h-[380px]')} style={props.imageAspect === 'portrait' ? { aspectRatio: '4 / 5' } : undefined}>{image('h-full w-full object-cover')}</div>
         )}
       </section>
     )
@@ -980,13 +980,18 @@ export function StorySection({ props }: { props: StoryProps }) {
     const image = props.images[0]
     return (
       <section className={cn('relative overflow-hidden', pick(device, { desktop: 'py-20', tablet: 'py-16', mobile: 'py-12' }))} style={{ background: theme.background, color: theme.text }}>
-        {image && (
+        {image && device === 'desktop' && (
           <>
             <div className="absolute inset-0">
               <ImageArt icon="building" imageUrl={image.imageUrl} imagePosition={image.imagePosition ?? 'center'} label={image.label} />
             </div>
             <div className="absolute inset-0" aria-hidden="true" style={{ background: device === 'desktop' ? `linear-gradient(90deg, ${theme.background}f2 0%, ${theme.background}b3 38%, ${theme.background}00 80%)` : `${theme.background}bf` }} />
           </>
+        )}
+        {image && device !== 'desktop' && (
+          <div className="relative w-full overflow-hidden" style={{ aspectRatio: '1600 / 553' }}>
+            <ImageArt icon="building" imageUrl={image.imageUrl} imagePosition={image.imagePosition ?? 'center'} label={image.label} />
+          </div>
         )}
         <div className={cn('relative z-10', px)}>
           <div className={cn('max-w-[480px]', device === 'desktop' ? 'py-16' : 'py-6')}>
@@ -1002,6 +1007,9 @@ export function StorySection({ props }: { props: StoryProps }) {
                   </li>
                 ))}
               </ul>
+            )}
+            {props.buttonLabel && (
+              <span className="mt-7 inline-flex whitespace-nowrap px-8 py-4 text-[11px] font-medium uppercase tracking-[0.2em]" style={{ background: theme.primary, color: theme.primaryText }}>{props.buttonLabel}</span>
             )}
           </div>
           {props.stats && (
@@ -1027,7 +1035,7 @@ export function StorySection({ props }: { props: StoryProps }) {
           mobile: 'grid-cols-1 gap-8',
         }))}>
           {first && (
-            <div className={cn('overflow-hidden', card, pick(device, { desktop: 'h-[400px]', tablet: 'h-[340px]', mobile: 'h-[260px]' }))}>
+            <div className={cn('overflow-hidden', card, first.aspect && device !== 'desktop' ? undefined : pick(device, { desktop: 'h-[400px]', tablet: 'h-[340px]', mobile: 'h-[260px]' }))} style={first.aspect && device !== 'desktop' ? { aspectRatio: first.aspect } : undefined}>
               <ImageArt icon="dumbbell" imageUrl={first.imageUrl} imagePosition={first.imagePosition ?? 'center 62%'} label={first.label} />
             </div>
           )}
@@ -1558,16 +1566,20 @@ export function ShowcaseSection({ props }: { props: ShowcaseProps }) {
           <div className={cn('mt-12 grid gap-6', pick(device, { desktop: 'grid-cols-5', tablet: 'grid-cols-2', mobile: 'grid-cols-1' }))}>
             {props.items.map((item, index) => (
               <article key={item.title} className="flex flex-col" style={{ background: theme.secondary }}>
-                <div className="h-[240px] overflow-hidden">
-                  <ImageArt icon={item.icon ?? 'sparkles'} imageUrl={item.imageUrl} imagePosition={item.imagePosition ?? 'center'} label={item.title} seed={index} />
+                <div className="overflow-hidden" style={{ background: theme.secondary, aspectRatio: '4 / 3' }}>
+                  {item.imageUrl ? (
+                    <img src={item.imageUrl} alt={item.title} loading="lazy" className="h-full w-full object-contain" style={{ objectPosition: item.imagePosition ?? 'center top' }} />
+                  ) : (
+                    <ImageArt icon={item.icon ?? 'sparkles'} imageUrl={item.imageUrl} imagePosition={item.imagePosition ?? 'center'} label={item.title} seed={index} />
+                  )}
                 </div>
-                <div className="flex flex-1 flex-col px-7 pb-7 pt-6">
+                <div className="flex flex-1 flex-col px-7 pb-7 pt-6" style={item.textInset ? { paddingLeft: item.textInset } : undefined}>
                   <div className="flex items-center gap-4">
                     {item.icon && <span style={{ color: theme.primary }}><Icon name={item.icon} size={26} strokeWidth={1.25} /></span>}
-                    <h3 className="font-display text-[22px] font-normal uppercase tracking-[0.04em]">{item.title}</h3>
+                    <h3 className="font-display text-[22px] font-normal uppercase tracking-[0.04em]" style={{ color: theme.text }}>{item.title}</h3>
                   </div>
                   {item.description && <p className="mt-3 text-sm leading-relaxed" style={{ color: theme.muted }}>{item.description}</p>}
-                  <span className="mt-auto inline-flex items-center gap-2 pt-6 text-[11px] font-medium uppercase tracking-[0.2em]">
+                  <span className="mt-auto inline-flex items-center gap-2 pt-6 text-[11px] font-medium uppercase tracking-[0.2em]" style={{ color: theme.text }}>
                     {item.linkLabel ?? props.buttonLabel ?? 'Discover'}<ArrowRight size={14} />
                   </span>
                 </div>
@@ -1744,15 +1756,21 @@ export function ShowcaseSection({ props }: { props: ShowcaseProps }) {
                 </article>
               ) : (
                 <article key={item.title} className={cn('relative border', card)} style={{ borderColor: `${theme.text}14`, background: theme.background }}>
-                  <div className={cn('h-[150px] overflow-hidden', card === 'rounded-none' ? '' : 'rounded-t-2xl')}>
-                    <ImageArt icon={item.icon ?? 'award'} imageUrl={item.imageUrl} imagePosition={item.imagePosition} seed={index} />
+                  <div className="relative">
+                  <div className={cn('overflow-hidden', card === 'rounded-none' ? '' : 'rounded-t-2xl', item.aspect && device !== 'desktop' ? '' : 'h-[150px]')} style={item.aspect && device !== 'desktop' ? { aspectRatio: '1 / 1', background: theme.secondary } : undefined}>
+                    {item.aspect && device !== 'desktop' ? (
+                      <img src={item.imageUrl} alt={item.title} loading="lazy" className="h-full w-full object-contain" />
+                    ) : (
+                      <ImageArt icon={item.icon ?? 'award'} imageUrl={item.imageUrl} imagePosition={item.imagePosition} seed={index} />
+                    )}
                   </div>
                   <span
-                    className="absolute left-5 top-[126px] flex h-11 w-11 items-center justify-center rounded-full"
+                    className="absolute bottom-0 left-5 flex h-11 w-11 translate-y-1/2 items-center justify-center rounded-full"
                     style={{ background: theme.background, color: theme.primary, boxShadow: `0 6px 16px -6px ${theme.text}55` }}
                   >
                     <Icon name={item.icon ?? 'award'} size={20} />
                   </span>
+                  </div>
                   <div className="px-5 pb-6 pt-9">
                     <h3 className="text-sm font-bold" style={{ color: theme.text }}>{item.title}</h3>
                     {item.description && <p className="mt-2 text-xs leading-relaxed" style={{ color: theme.muted }}>{item.description}</p>}
@@ -1910,7 +1928,7 @@ export function ShowcaseSection({ props }: { props: ShowcaseProps }) {
       <div className={cn('grid gap-6', cols(n), programs && 'gap-x-5 gap-y-8')}>
         {props.items.map((item, i) => (
           <article key={item.title} className={programs ? 'text-center' : undefined}>
-            <div className={cn('relative overflow-hidden', programs ? 'rounded-md aspect-[4/3]' : card, gallery && 'ring-1 ring-amber-700/80', programs || item.aspect ? undefined : props.imageAspect === 'landscape' ? 'aspect-[16/10]' : isProducts ? 'aspect-[4/5]' : 'aspect-[4/3]')} style={!programs && item.aspect ? { aspectRatio: item.aspect } : undefined}>
+            <div className={cn('relative overflow-hidden', programs ? (item.aspect ? 'rounded-md' : 'rounded-md aspect-[4/3]') : card, gallery && 'ring-1 ring-amber-700/80', programs || item.aspect ? undefined : props.imageAspect === 'landscape' ? 'aspect-[16/10]' : isProducts ? 'aspect-[4/5]' : 'aspect-[4/3]')} style={item.aspect ? { aspectRatio: item.aspect } : undefined}>
               <ImageArt icon={item.icon ?? 'sparkles'} imageUrl={item.imageUrl} imagePosition={item.imagePosition} label={item.title} seed={i} />
               {item.tag && isProducts && !programs && (
                 <span className="absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-semibold" style={{ background: theme.background, color: theme.text }}>{item.tag}</span>

@@ -47,6 +47,7 @@ export const ironFormTemplates: Template[] = [
         imageIcon: 'dumbbell',
         imageUrl: img('hero-battle-rope.webp'),
         imagePosition: 'center 30%',
+        imageAspect: 'portrait',
       }),
       features({
         layout: 'elevate',
@@ -66,10 +67,10 @@ export const ironFormTemplates: Template[] = [
         layout: 'elevate',
         buttonLabel: 'Explore programmes',
         items: [
-          { title: 'Strength training', description: 'Build strength, improve endurance and tone your body.', icon: 'dumbbell', imageUrl: img('programs-strength.webp'), imagePosition: 'center 35%' },
-          { title: 'Weight loss', description: 'Burn fat, boost your metabolism and reach a healthier you.', icon: 'flame', imageUrl: img('programs-weight-loss.webp'), imagePosition: 'center 30%' },
-          { title: 'Yoga & flexibility', description: 'Improve mobility, reduce stress and recover well.', icon: 'heart', imageUrl: img('programs-yoga.webp'), imagePosition: '72% center' },
-          { title: 'HIIT workouts', description: 'High-intensity sessions for maximum results in less time.', icon: 'zap', imageUrl: img('programs-hiit.webp'), imagePosition: 'center 40%' },
+          { title: 'Strength training', description: 'Build strength, improve endurance and tone your body.', icon: 'dumbbell', imageUrl: img('programs-strength.webp'), aspect: '1199 / 1312', imagePosition: 'center 35%' },
+          { title: 'Weight loss', description: 'Burn fat, boost your metabolism and reach a healthier you.', icon: 'flame', imageUrl: img('programs-weight-loss.webp'), aspect: '1199 / 1312', imagePosition: 'center 30%' },
+          { title: 'Yoga & flexibility', description: 'Improve mobility, reduce stress and recover well.', icon: 'heart', imageUrl: img('programs-yoga.webp'), aspect: '1448 / 1086', imagePosition: '72% center' },
+          { title: 'HIIT workouts', description: 'High-intensity sessions for maximum results in less time.', icon: 'zap', imageUrl: img('programs-hiit.webp'), aspect: '1199 / 1312', imagePosition: 'center 40%' },
         ],
       }),
       story({
@@ -78,7 +79,7 @@ export const ironFormTemplates: Template[] = [
         eyebrow: 'About Iron Form',
         title: 'More Than Just a Gym',
         description: 'We are a fitness community focused on helping you build strength, energy and long-term wellness through expert guidance, effective programmes and a supportive environment.',
-        images: [{ imageUrl: img('story-gym-floor.webp'), label: 'Iron Form training floor' }],
+        images: [{ imageUrl: img('story-gym-floor.webp'), label: 'Iron Form training floor', aspect: '900 / 1350' }],
         quote: '',
         stats: [
           { icon: 'award', value: '10+', label: 'Years of experience' },
