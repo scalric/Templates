@@ -5,19 +5,19 @@ const HERO_PREVIEWS = [
   {
     slug: 'brightsmile-dental',
     name: 'Brightsmile Dental',
-    image: '/images/hero/brightsmile-dental.png',
+    image: '/images/hero/brightsmile-dental.webp',
     className: 'left-0 top-[10%] z-10 -rotate-3',
   },
   {
     slug: 'flowdesk-saas',
     name: 'Flowdesk SaaS',
-    image: '/images/hero/flowdesk-saas.png',
+    image: '/images/hero/flowdesk-saas.webp',
     className: 'right-0 top-0 z-20 rotate-3',
   },
   {
     slug: 'ember-and-oak',
     name: 'Ember & Oak',
-    image: '/images/hero/ember-and-oak.png',
+    image: '/images/hero/ember-and-oak.webp',
     className: 'left-[12%] top-[39%] z-30 -rotate-1',
   },
 ]

@@ -4,6 +4,8 @@ import type { Device, SiteTheme } from '../types/site'
 interface SiteContextValue {
   theme: SiteTheme
   device: Device
+  /** Miniature thumbnail (card or list), where hero images should not load eagerly. */
+  preview?: boolean
 }
 
 export const SiteContext = createContext<SiteContextValue | null>(null)

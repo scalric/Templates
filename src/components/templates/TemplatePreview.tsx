@@ -13,7 +13,7 @@ export function TemplatePreview({ template, className, chrome = true, bare = fal
     <div aria-hidden="true" className={cn('pointer-events-none select-none overflow-hidden bg-white', !bare && 'rounded-2xl border border-slate-200/80', className)}>
       {chrome && <BrowserBar label={`${template.slug}.templates.site`} />}
       <ScaledPage width={DEVICE_WIDTH.desktop} cropAspect={cropAspect}>
-        <SiteRenderer document={template.document} />
+        <SiteRenderer document={template.document} preview />
       </ScaledPage>
     </div>
   )

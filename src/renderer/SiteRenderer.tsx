@@ -11,19 +11,21 @@ interface Props {
   /** Provide these to make sections selectable (editor mode). */
   selectedId?: string | null
   onSelect?: (id: string) => void
+  /** Set for thumbnails so their images stay lazy-loaded. */
+  preview?: boolean
 }
 
 /**
  * Pure renderer: SiteDocument in, website out. Used by template previews today
  * and by the editor canvas tomorrow (via selectedId / onSelect).
  */
-export function SiteRenderer({ document, pageIndex = 0, device = 'desktop', selectedId, onSelect }: Props) {
+export function SiteRenderer({ document, pageIndex = 0, device = 'desktop', selectedId, onSelect, preview = false }: Props) {
   const { theme, pages } = document
   const page = pages[pageIndex] ?? pages[0]
   const interactive = Boolean(onSelect)
 
   return (
-    <SiteContext.Provider value={{ theme, device }}>
+    <SiteContext.Provider value={{ theme, device, preview }}>
       <div className="font-sans antialiased" style={{ background: theme.background, color: theme.text }}>
         {page?.sections.map((section) => {
           if (!interactive) return <div key={section.id}>{renderSection(section)}</div>

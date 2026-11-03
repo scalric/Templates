@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { ArrowLeft, Check, Eye, Info, Layers, Wand2, X } from 'lucide-react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { ArrowLeft, Check, Eye, Info, Layers, Redo2, Undo2, Wand2, X } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { DeviceToggle } from '../components/templates/DeviceToggle'
 import { Button } from '../components/ui/Button'
@@ -55,8 +55,61 @@ function EditorShell({ design }: { design: Design }) {
     return () => window.clearTimeout(t)
   }, [name, design.id, design.name])
 
+  // Undo/redo history of the document. Rapid edits to the same field merge into one step.
+  const past = useRef<Design['document'][]>([])
+  const future = useRef<Design['document'][]>([])
+  const lastEdit = useRef<{ key: string; time: number } | null>(null)
+  const documentRef = useRef(design.document)
+  documentRef.current = design.document
+  const [, setHistoryVersion] = useState(0)
+
+  const undo = useCallback(() => {
+    const previous = past.current.pop()
+    if (!previous) return
+    future.current.push(documentRef.current)
+    lastEdit.current = null
+    designStore.update(design.id, { document: previous })
+    setHistoryVersion((v) => v + 1)
+  }, [design.id])
+
+  const redo = useCallback(() => {
+    const next = future.current.pop()
+    if (!next) return
+    past.current.push(documentRef.current)
+    lastEdit.current = null
+    designStore.update(design.id, { document: next })
+    setHistoryVersion((v) => v + 1)
+  }, [design.id])
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (!(event.ctrlKey || event.metaKey) || event.altKey) return
+      const key = event.key.toLowerCase()
+      if (key === 'z') {
+        event.preventDefault()
+        if (event.shiftKey) redo()
+        else undo()
+      } else if (key === 'y') {
+        event.preventDefault()
+        redo()
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [undo, redo])
+
   const updateSelectedProp = (path: (string | number)[], value: unknown) => {
     if (!selectedId) return
+    const editKey = `${selectedId}:${path.join('.')}`
+    const now = Date.now()
+    const merge = lastEdit.current?.key === editKey && now - lastEdit.current.time < 800
+    if (!merge) {
+      past.current.push(design.document)
+      if (past.current.length > 100) past.current.shift()
+    }
+    future.current = []
+    lastEdit.current = { key: editKey, time: now }
+    setHistoryVersion((v) => v + 1)
     const document = {
       ...design.document,
       pages: design.document.pages.map((currentPage) => ({
@@ -95,6 +148,14 @@ function EditorShell({ design }: { design: Design }) {
         />
         <span className="hidden items-center gap-1 text-xs text-slate-500 sm:inline-flex"><Check size={14} className="text-emerald-600" /> Saved</span>
         <div className="ml-auto flex items-center gap-2">
+          <div className="flex items-center gap-1">
+            <button type="button" onClick={undo} disabled={past.current.length === 0} aria-label="Undo" title="Undo (Ctrl+Z)" className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent">
+              <Undo2 size={18} />
+            </button>
+            <button type="button" onClick={redo} disabled={future.current.length === 0} aria-label="Redo" title="Redo (Ctrl+Y)" className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent">
+              <Redo2 size={18} />
+            </button>
+          </div>
           <DeviceToggle value={device} onChange={setDevice} />
           <Button size="sm" variant="secondary" leftIcon={previewMode ? <X size={16} /> : <Eye size={16} />} onClick={() => setPreviewMode(!previewMode)}>
             {previewMode ? 'Edit' : 'Preview'}
@@ -259,6 +320,7 @@ function updateSectionProps(section: Section, path: (string | number)[], value: 
     case 'testimonials': return { ...section, props: updateAtPath(section.props, path, value) }
     case 'cta': return { ...section, props: updateAtPath(section.props, path, value) }
     case 'footer': return { ...section, props: updateAtPath(section.props, path, value) }
+    case 'image': return { ...section, props: updateAtPath(section.props, path, value) }
   }
 }
 

@@ -1,6 +1,6 @@
 import type { Template } from '../types/template'
 import type {
-  CtaProps, FeaturesProps, FooterProps, HeroProps, NavbarProps, Section, SectionDraft, StoryProps,
+  CtaProps, FeaturesProps, FooterProps, HeroProps, ImageBandProps, NavbarProps, Section, SectionDraft, StoryProps,
   ShowcaseProps, SitePage, SiteTheme, SiteDocument, TestimonialsProps,
 } from '../types/site'
 
@@ -12,6 +12,7 @@ export const showcase = (props: ShowcaseProps): SectionDraft => ({ type: 'showca
 export const testimonials = (props: TestimonialsProps): SectionDraft => ({ type: 'testimonials', props })
 export const cta = (props: CtaProps): SectionDraft => ({ type: 'cta', props })
 export const footer = (props: FooterProps): SectionDraft => ({ type: 'footer', props })
+export const image = (props: ImageBandProps): SectionDraft => ({ type: 'image', props })
 
 /** Assigns stable ids and wraps drafts into a single-page SiteDocument. */
 export function buildDocument(slug: string, theme: SiteTheme, drafts: SectionDraft[]): SiteDocument {

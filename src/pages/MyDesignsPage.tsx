@@ -52,7 +52,7 @@ export default function MyDesignsPage() {
                       <BrowserBar label="draft.templates.site" />
                       <ErrorBoundary fallback={<PreviewUnavailable />}>
                         <ScaledPage width={DEVICE_WIDTH.desktop} cropAspect={0.78}>
-                          <SiteRenderer document={d.document} />
+                          <SiteRenderer document={d.document} preview />
                         </ScaledPage>
                       </ErrorBoundary>
                     </div>

@@ -15,7 +15,9 @@ for (const t of templates) {
     const hero = t.document.pages[0].sections.find((s) => s.type === 'hero')!
     const title = (hero.props as { title: string }).title
     // Multi-line titles render one <span> per line, so each line is checked on its own.
-    const titleLines = title.split('\n')
+    // An accent word is rendered in its own <span>, so check the text on either side of it.
+    const accent = (hero.props as { highlight?: string }).highlight
+    const titleLines = title.split('\n').flatMap((line) => (accent && line.includes(accent) ? line.split(accent) : [line])).map((line) => line.trim()).filter(Boolean)
     if (!titleLines.every((line) => html.includes(line.replace(/’/g, '&#x27;')) || html.includes(line))) { console.error('missing hero title', t.slug, device); bad++ }
     if (html.length < 4000) { console.error('suspiciously small output', t.slug, device, html.length); bad++ }
   }
@@ -65,7 +67,7 @@ if (!stillwater) {
       'practice card styling': 'rounded-md aspect-[4/3]',
       'centered practice card titles': 'text-center text-base font-medium',
       'View practice button': 'View practice',
-      'provided private training image': '/images/yoga/private-training.png',
+      'provided private training image': '/images/yoga/private-training.webp',
       'private training image position': 'object-position:center center',
       '10+ years metric': '10+',
       '500+ clients metric': '500+',
@@ -146,7 +148,7 @@ if (!stillwater) {
           props: {
             ...props,
             items: props.items.map((item) => item.title === 'Private training'
-              ? { ...item, title: 'Gentle flow', imageUrl: '/images/yoga/gentle-flow.png', imagePosition: 'center 72%' }
+              ? { ...item, title: 'Gentle flow', imageUrl: '/images/yoga/gentle-flow.webp', imagePosition: 'center 72%' }
               : item),
           },
         }
@@ -163,7 +165,7 @@ if (!stillwater) {
     document: legacyDocument,
   } satisfies Design)
   const migratedHtml = renderToStaticMarkup(<SiteRenderer document={upgraded.document} device="desktop" />)
-  for (const value of ['10+', '500+', '20+', '98%', 'Private training', 'View practice', 'Stay connected', 'Privacy policy', 'private-training.png', 'object-position:center center', 'color:#b76e52']) {
+  for (const value of ['10+', '500+', '20+', '98%', 'Private training', 'View practice', 'Stay connected', 'Privacy policy', 'private-training.webp', 'object-position:center center', 'color:#b76e52']) {
     if (!migratedHtml.includes(value)) {
       console.error(`legacy Stillwater design missing migrated content: ${value}`)
       bad++

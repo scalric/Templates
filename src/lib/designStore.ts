@@ -10,14 +10,30 @@ import { templateById } from '../data/templates'
  */
 const KEY = 'sitecraft.designs.v1'
 
+// Template images were converted from PNG/JPEG to WebP. Saved designs copy those
+// URLs, so rewrite them here. Files that were not converted are left alone.
+const KEPT_IMAGE_URLS = new Set(['/images/riptide/hero.jpg', '/images/yoga/studio-hero.jpg'])
+
+function migrateImageUrls(raw: string): string {
+  return raw.replace(/\/images\/[\w/-]+\.(?:jpe?g|png)/g, (url) => (KEPT_IMAGE_URLS.has(url) ? url : url.replace(/\.(?:jpe?g|png)$/, '.webp')))
+}
+
 let cache: Design[] | null = null
 const listeners = new Set<() => void>()
 
 function read(): Design[] {
   if (cache) return cache
   try {
-    const raw = localStorage.getItem(KEY)
-    const parsed: unknown = raw ? JSON.parse(raw) : []
+    const raw = localStorage.getItem(KEY) ?? ''
+    const migrated = migrateImageUrls(raw)
+    if (migrated !== raw) {
+      try {
+        localStorage.setItem(KEY, migrated)
+      } catch {
+        /* storage full or unavailable — the migration reruns on next load */
+      }
+    }
+    const parsed: unknown = migrated ? JSON.parse(migrated) : []
     const stored = Array.isArray(parsed) ? (parsed as Design[]) : []
     cache = stored.map(upgradeDesign)
     if (cache.some((design, index) => design !== stored[index])) {
@@ -139,7 +155,7 @@ export function upgradeDesign(saved: Design): Design {
         (
           !section.props.cardStyle ||
           !section.props.buttonLabel ||
-          section.props.items.some((item) => item.title === 'Gentle flow' || item.imageUrl?.endsWith('/gentle-flow.png'))
+          section.props.items.some((item) => item.title === 'Gentle flow' || item.imageUrl?.endsWith('/gentle-flow.webp'))
         )
       ) {
         changed = true
@@ -150,7 +166,7 @@ export function upgradeDesign(saved: Design): Design {
             cardStyle: section.props.cardStyle ?? practiceEnhancements.props.cardStyle,
             buttonLabel: section.props.buttonLabel ?? practiceEnhancements.props.buttonLabel,
             items: section.props.items.map((item) => (
-              item.title === 'Gentle flow' || item.imageUrl?.endsWith('/gentle-flow.png')
+              item.title === 'Gentle flow' || item.imageUrl?.endsWith('/gentle-flow.webp')
             ) && privateTrainingEnhancement
               ? {
                   ...item,

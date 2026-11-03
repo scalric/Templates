@@ -29,7 +29,7 @@ export const businessTemplates: Template[] = [
         layout: 'split',
         imageLabel: 'Flowdesk team dashboard',
         imageIcon: 'layers',
-        imageUrl: '/images/flowdesk/dashboard-hero.png',
+        imageUrl: '/images/flowdesk/dashboard-hero.webp',
         imageAspect: 'landscape',
       }),
       features({ title: 'Trusted by modern teams', layout: 'logos', items: [
@@ -51,7 +51,7 @@ export const businessTemplates: Template[] = [
         eyebrow: 'Built for teams of all sizes',
         title: 'Less busy work. More meaningful work.',
         description: 'Flowdesk helps teams stay organized, reduce context switching and focus on what matters most.',
-        images: [{ imageUrl: '/images/flowdesk/team-tasks.png', label: 'Flowdesk team tasks dashboard' }],
+        images: [{ imageUrl: '/images/flowdesk/team-tasks.webp', label: 'Flowdesk team tasks dashboard' }],
         quote: 'A calmer way to work together.',
         highlights: ['Centralized workspace', 'Smart automation', 'Real-time collaboration', 'Insights and reporting'],
         buttonLabel: 'Learn more',
@@ -68,7 +68,7 @@ export const businessTemplates: Template[] = [
         button: 'Start free trial',
         tone: 'soft',
         layout: 'banner',
-        imageUrl: '/images/flowdesk/team-collaboration.png',
+        imageUrl: '/images/flowdesk/team-collaboration.webp',
       }),
       footer({
         brand: 'Flowdesk',

@@ -29,7 +29,7 @@ export const healthcareTemplates: Template[] = [
         layout: 'split',
         imageLabel: 'Smiling patient at BrightSmile Dental Clinic',
         imageIcon: 'smile',
-        imageUrl: '/images/brightsmile/hero-patient.png',
+        imageUrl: '/images/brightsmile/hero-patient.webp',
         imagePosition: 'center 44%',
         imageAspect: 'landscape',
         benefits: [
@@ -54,7 +54,7 @@ export const healthcareTemplates: Template[] = [
         eyebrow: 'About BrightSmile',
         title: 'Your Smile, Our Priority',
         description: 'We are committed to providing compassionate, high-quality dental care in a modern and welcoming environment. Our experienced team uses the latest technology to ensure the best results for our patients.',
-        images: [{ imageUrl: '/images/brightsmile/patient-care.png', label: 'Dentist providing gentle care', imagePosition: 'center' }],
+        images: [{ imageUrl: '/images/brightsmile/patient-care.webp', label: 'Dentist providing gentle care', imagePosition: 'center' }],
         quote: 'Care that puts your comfort first.',
         highlights: ['Patient-centered approach', 'State-of-the-art technology', 'Comfortable & friendly environment'],
         buttonLabel: 'Learn More',
@@ -133,7 +133,7 @@ export const healthcareTemplates: Template[] = [
         layout: 'overlay',
         imageLabel: 'Doctor speaking with a patient at MediCore Hospital',
         imageIcon: 'stethoscope',
-        imageUrl: '/images/medicore/hero-doctor-patient.png',
+        imageUrl: '/images/medicore/hero-doctor-patient.webp',
         imagePosition: 'center center',
         benefits: [
           { icon: 'shield', title: 'Trusted Experts', description: 'Experienced medical teams' },
@@ -148,9 +148,9 @@ export const healthcareTemplates: Template[] = [
         { icon: 'heart', title: 'Cardiology', description: 'Advanced heart care for a healthier tomorrow.' },
       ] }),
       showcase({ title: 'Featured Services', subtitle: 'Advanced medical services with modern technology and expert care.', variant: 'cards', imageAspect: 'landscape', buttonLabel: 'View All Services', items: [
-        { title: 'Advanced Diagnostics', description: 'Accurate and early diagnosis with state-of-the-art medical imaging.', icon: 'camera', imageUrl: '/images/medicore/advanced-diagnostics.png' },
-        { title: 'Specialized Surgeries', description: 'Expert surgical care with advanced equipment and technology.', icon: 'stethoscope', imageUrl: '/images/medicore/surgical-care.png' },
-        { title: 'Preventive Care', description: 'Stay healthier with regular check-ups and personalized care plans.', icon: 'heart', imageUrl: '/images/medicore/preventive-care.png' },
+        { title: 'Advanced Diagnostics', description: 'Accurate and early diagnosis with state-of-the-art medical imaging.', icon: 'camera', imageUrl: '/images/medicore/advanced-diagnostics.webp' },
+        { title: 'Specialized Surgeries', description: 'Expert surgical care with advanced equipment and technology.', icon: 'stethoscope', imageUrl: '/images/medicore/surgical-care.webp' },
+        { title: 'Preventive Care', description: 'Stay healthier with regular check-ups and personalized care plans.', icon: 'heart', imageUrl: '/images/medicore/preventive-care.webp' },
       ] }),
       story({
         layout: 'split',
@@ -158,7 +158,7 @@ export const healthcareTemplates: Template[] = [
         eyebrow: 'Why choose MediCore',
         title: 'Expert care, centered around you',
         description: 'We combine advanced medical expertise with a compassionate approach to ensure the best outcomes for you and your family.',
-        images: [{ imageUrl: '/images/medicore/hospital-reception.png', label: 'The welcoming MediCore Hospital reception' }],
+        images: [{ imageUrl: '/images/medicore/hospital-reception.webp', label: 'The welcoming MediCore Hospital reception' }],
         quote: 'A healthier tomorrow, together.',
         highlights: ['Experienced doctors', 'Modern medical technology', 'Patient-centered care', 'Round-the-clock support'],
         buttonLabel: 'About MediCore',

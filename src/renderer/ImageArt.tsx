@@ -11,6 +11,8 @@ interface Props {
   imagePosition?: string
   seed?: number
   className?: string
+  /** Above-the-fold hero image: load eagerly with high fetch priority. */
+  priority?: boolean
 }
 
 const BLOBS = [
@@ -23,13 +25,26 @@ const BLOBS = [
  * Photo slot. Renders `imageUrl` when provided; otherwise a generated,
  * theme-aware placeholder so templates look finished with zero assets.
  */
-export function ImageArt({ icon, label, imageUrl, imagePosition, seed = 0, className }: Props) {
-  const { theme } = useSite()
+export function ImageArt({ icon, label, imageUrl, imagePosition, seed = 0, className, priority = false }: Props) {
+  const { theme, preview } = useSite()
   const [failed, setFailed] = useState(false)
+  // Thumbnails of other pages are never above the fold, so only full renders get priority.
+  const eager = priority && !preview
+
+  // React 18 does not know the camelCase fetchPriority prop, so the DOM attribute is set directly.
+  const fetchPriorityAttr: Record<string, string> = eager ? { fetchpriority: 'high' } : {}
 
   if (imageUrl && !failed) {
     return (
-      <img src={imageUrl} alt={label ?? ''} loading="lazy" onError={() => setFailed(true)} className={cn('h-full w-full object-cover', className)} style={imagePosition ? { objectPosition: imagePosition } : undefined} />
+      <img
+        src={imageUrl}
+        alt={label ?? ''}
+        loading={eager ? 'eager' : 'lazy'}
+        {...fetchPriorityAttr}
+        onError={() => setFailed(true)}
+        className={cn('h-full w-full object-cover', className)}
+        style={imagePosition ? { objectPosition: imagePosition } : undefined}
+      />
     )
   }
 

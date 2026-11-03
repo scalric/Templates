@@ -32,7 +32,7 @@ export const foodTemplates: Template[] = [
         mobileHeroHeight: 'tall',
         imageLabel: 'A steak finished over the open flame',
         imageIcon: 'flame',
-        imageUrl: '/images/ember-and-oak/hero.png',
+        imageUrl: '/images/ember-and-oak/hero.webp',
         imagePosition: 'center center',
       }),
       features({ title: 'The Ember & Oak experience', layout: 'strip', items: [
@@ -48,10 +48,10 @@ export const foodTemplates: Template[] = [
         layout: 'gallery',
         imageAspect: 'landscape',
         items: [
-          { title: 'Wood-fired steak', description: 'Smoked & tender', imageUrl: '/images/ember-and-oak/wood-fired-steak.jpg' },
-          { title: 'Seared scallops', description: 'Citrus herb butter', imageUrl: '/images/ember-and-oak/seared-scallops.jpg' },
-          { title: 'Roasted vegetables', description: 'Seasonal selection', imageUrl: '/images/ember-and-oak/roasted-vegetables.jpg' },
-          { title: 'Artisan desserts', description: 'Handcrafted sweets', imageUrl: '/images/ember-and-oak/artisan-dessert.jpg' },
+          { title: 'Wood-fired steak', description: 'Smoked & tender', imageUrl: '/images/ember-and-oak/wood-fired-steak.webp' },
+          { title: 'Seared scallops', description: 'Citrus herb butter', imageUrl: '/images/ember-and-oak/seared-scallops.webp' },
+          { title: 'Roasted vegetables', description: 'Seasonal selection', imageUrl: '/images/ember-and-oak/roasted-vegetables.webp' },
+          { title: 'Artisan desserts', description: 'Handcrafted sweets', imageUrl: '/images/ember-and-oak/artisan-dessert.webp' },
         ],
       }),
       story({
@@ -59,7 +59,7 @@ export const foodTemplates: Template[] = [
         eyebrow: 'Our story',
         title: 'A passion for extraordinary food',
         description: 'Ember & Oak was born from a love of open-fire cooking and a belief that great food brings people together. We celebrate seasonal ingredients, bold flavours and unforgettable dining experiences.',
-        images: [{ imageUrl: '/images/ember-and-oak/dining-room.png', label: 'The Ember & Oak dining room' }],
+        images: [{ imageUrl: '/images/ember-and-oak/dining-room.webp', label: 'The Ember & Oak dining room' }],
         quote: 'Good food, shared around the fire.',
         highlights: ['Locally sourced ingredients', 'Fire-inspired menu', 'Curated wine selection', 'Warm and intimate atmosphere'],
         buttonLabel: 'Our story',

@@ -27,7 +27,7 @@ export interface NavbarProps {
   icon: IconName
   links: string[]
   cta: string
-  layout?: 'default' | 'bakery' | 'academy' | 'boutique'
+  layout?: 'default' | 'bakery' | 'academy' | 'boutique' | 'elevate' | 'aesthetic' | 'athletic' | 'nexora'
   announcement?: string
   showSearch?: boolean
   subtitle?: string
@@ -41,7 +41,13 @@ export interface HeroProps {
   primaryCta: string
   secondaryCta?: string
   secondaryCtaStyle?: 'light' | 'outline'
-  layout: 'split' | 'centered' | 'overlay' | 'bakery' | 'academy' | 'boutique'
+  layout: 'split' | 'centered' | 'overlay' | 'bakery' | 'academy' | 'boutique' | 'elevate' | 'aesthetic' | 'athletic' | 'nexora'
+  /** Circular stamp text on the photo (aesthetic layout). Omit to hide the stamp. */
+  sealText?: string
+  /** Accent word in the title (nexora layout). */
+  highlight?: string
+  /** Search fields shown on a card under the hero (nexora layout). */
+  searchFields?: { label: string; placeholder: string }[]
   /** Decorative handwritten note beside the hero photo (bakery layout). */
   handwritten?: string[]
   mobileHeroHeight?: 'standard' | 'tall'
@@ -57,14 +63,23 @@ export interface HeroProps {
 
 export interface FeaturesProps {
   title: string
-  layout?: 'cards' | 'strip' | 'bakery' | 'stats' | 'logos'
+  layout?: 'cards' | 'strip' | 'bakery' | 'stats' | 'logos' | 'elevate' | 'process' | 'steps' | 'player'
   eyebrow?: string
   subtitle?: string
   items: { icon: IconName; title: string; description: string }[]
+  images?: { imageUrl: string; label: string; imagePosition?: string }[]
+  /** Call-to-action shown in the steps and player layouts. */
+  buttonLabel?: string
+}
+
+export interface ImageBandProps {
+  imageUrl: string
+  label: string
+  imagePosition?: string
 }
 
 export interface StoryProps {
-  layout?: 'collage' | 'split' | 'bakery'
+  layout?: 'collage' | 'split' | 'bakery' | 'elevate' | 'about' | 'athletic' | 'committed' | 'wellness'
   imageSide?: 'left' | 'right'
   eyebrow: string
   title: string
@@ -74,6 +89,12 @@ export interface StoryProps {
   stats?: { icon: IconName; value: string; label: string }[]
   highlights?: string[]
   buttonLabel?: string
+  /** Second paragraph under the description (athletic layout). */
+  details?: string
+  /** Large number with a label, e.g. years of experience (athletic layout). */
+  milestone?: { value: string; label: string }
+  /** Word in the title to show in the accent colour (athletic layout). */
+  highlight?: string
 }
 
 export interface ShowcaseItem {
@@ -85,6 +106,8 @@ export interface ShowcaseItem {
   icon?: IconName
   imageUrl?: string
   imagePosition?: string
+  /** Photo proportions, e.g. "1514 / 1039". Overrides the card image aspect. */
+  aspect?: string
 }
 
 export interface ShowcaseProps {
@@ -94,7 +117,7 @@ export interface ShowcaseProps {
   tone?: 'default' | 'dark'
   categoryImageUrl?: string
   imageAspect?: 'landscape' | 'portrait'
-  layout?: 'default' | 'journal' | 'gallery' | 'categories' | 'favorites' | 'articles' | 'programs' | 'arrivals' | 'mosaic' | 'tiles'
+  layout?: 'default' | 'journal' | 'gallery' | 'categories' | 'favorites' | 'articles' | 'programs' | 'arrivals' | 'mosaic' | 'tiles' | 'elevate' | 'team' | 'blog' | 'signature' | 'catalog' | 'categories' | 'category-grid' | 'news'
   eyebrow?: string
   viewAllLabel?: string
   /** Category tabs shown above a product grid. */
@@ -106,7 +129,7 @@ export interface ShowcaseProps {
 
 export interface TestimonialsProps {
   title: string
-  layout?: 'cards' | 'editorial' | 'carousel'
+  layout?: 'cards' | 'editorial' | 'carousel' | 'stories' | 'portraits'
   eyebrow?: string
   items: { quote: string; name: string; role: string; imageUrl?: string }[]
 }
@@ -116,8 +139,9 @@ export interface CtaProps {
   subtitle?: string
   button: string
   tone: 'primary' | 'soft'
-  layout?: 'default' | 'banner'
+  layout?: 'default' | 'banner' | 'feature' | 'partner'
   imageUrl?: string
+  imagePosition?: string
   eyebrow?: string
   handwritten?: string[]
 }
@@ -126,7 +150,7 @@ export interface FooterProps {
   brand: string
   tagline: string
   brandIcon?: IconName
-  variant?: 'default' | 'studio' | 'dark' | 'bakery' | 'boutique'
+  variant?: 'default' | 'studio' | 'dark' | 'bakery' | 'boutique' | 'elevate'
   columns: {
     title: string
     links: string[]
@@ -149,6 +173,7 @@ export interface SectionPropsMap {
   testimonials: TestimonialsProps
   cta: CtaProps
   footer: FooterProps
+  image: ImageBandProps
 }
 
 export type SectionType = keyof SectionPropsMap
@@ -191,4 +216,5 @@ export const SECTION_LABEL: Record<SectionType, string> = {
   testimonials: 'Testimonials',
   cta: 'Call to action',
   footer: 'Footer',
+  image: 'Image',
 }
