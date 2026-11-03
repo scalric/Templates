@@ -62,13 +62,9 @@ Editorial look: warm paper (`bg-paper`) background, near-black ink (`text-ink`),
 - `TemplateSection`, `ScrollRow`, `TemplateCard` (`default` | `featured` variants) — reusable building blocks for any template list.
 - Popular-search chips live in `src/data/searches.ts`; `npm run check:render` verifies each returns results.
 
-## Adding a template
 
-Add a `defineTemplate({...})` call to a file in `src/data/catalog/` (or create a new one and register it in `src/data/templates.ts`), then run `npm run check:data`.
 
-## Images
 
-Template imagery is generated, theme-aware art (`ImageArt`) so everything looks finished with zero assets. To use real photography, set `imageUrl` on a hero or showcase item — it falls back to the generated art if the image fails to load. Golden Crumb’s supplied bakery and customer photos are bundled under `public/images/golden-crumb/`.
 
 ## Known limitations (v0.1)
 
