@@ -2499,7 +2499,7 @@ export function FooterSection({ props }: { props: FooterProps }) {
 
   return (
     <footer className={cn('py-14', px)} style={{ borderTop: `1px solid ${theme.text}14` }}>
-      <div className={cn('mx-auto max-w-[1100px] gap-10', pick(device, { desktop: props.newsletter ? 'grid grid-cols-[1.4fr_repeat(3,1fr)_1.3fr]' : 'grid grid-cols-[1.4fr_repeat(3,1fr)]', mobile: 'flex flex-col' }))}>
+      <div className={cn('mx-auto max-w-[1100px] gap-10', pick(device, { desktop: props.newsletter ? 'grid grid-cols-[1.4fr_repeat(3,1fr)_1.3fr]' : 'grid grid-cols-[1.4fr_repeat(3,1fr)]', tablet: 'grid grid-cols-2 gap-10', mobile: 'flex flex-col' }))}>
         <div>
           <p className={cn('text-xl', heading)}>{props.brand}</p>
           <p className="mt-2 max-w-xs" style={{ color: theme.muted }}>{props.tagline}</p>
