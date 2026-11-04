@@ -27,11 +27,13 @@ export interface NavbarProps {
   icon: IconName
   links: string[]
   cta: string
-  layout?: 'default' | 'bakery' | 'academy' | 'boutique' | 'elevate' | 'aesthetic' | 'athletic' | 'nexora'
+  layout?: 'default' | 'bakery' | 'academy' | 'boutique' | 'elevate' | 'aesthetic' | 'athletic' | 'nexora' | 'salon' | 'cafe' | 'pitch' | 'photography'
   announcement?: string
   showSearch?: boolean
   subtitle?: string
   phone?: string
+  /** Small text at the left of the top bar (cafe layout). */
+  topLeft?: string
 }
 
 export interface HeroProps {
@@ -41,7 +43,7 @@ export interface HeroProps {
   primaryCta: string
   secondaryCta?: string
   secondaryCtaStyle?: 'light' | 'outline'
-  layout: 'split' | 'centered' | 'overlay' | 'bakery' | 'academy' | 'boutique' | 'elevate' | 'aesthetic' | 'athletic' | 'nexora'
+  layout: 'split' | 'centered' | 'overlay' | 'bakery' | 'academy' | 'boutique' | 'elevate' | 'aesthetic' | 'athletic' | 'nexora' | 'salon' | 'cafe' | 'pitch' | 'photography'
   /** Circular stamp text on the photo (aesthetic layout). Omit to hide the stamp. */
   sealText?: string
   /** Accent word in the title (nexora layout). */
@@ -79,7 +81,7 @@ export interface ImageBandProps {
 }
 
 export interface StoryProps {
-  layout?: 'collage' | 'split' | 'bakery' | 'elevate' | 'about' | 'athletic' | 'committed' | 'wellness'
+  layout?: 'collage' | 'split' | 'bakery' | 'elevate' | 'about' | 'athletic' | 'committed' | 'wellness' | 'backdrop' | 'cafe' | 'pitch' | 'teamwork' | 'photography'
   imageSide?: 'left' | 'right'
   eyebrow: string
   title: string
@@ -89,6 +91,8 @@ export interface StoryProps {
   stats?: { icon: IconName; value: string; label: string }[]
   highlights?: string[]
   buttonLabel?: string
+  /** Second button in the pitch layout (yellow is the primary). */
+  secondaryButtonLabel?: string
   /** Second paragraph under the description (athletic layout). */
   details?: string
   /** Large number with a label, e.g. years of experience (athletic layout). */
@@ -119,7 +123,7 @@ export interface ShowcaseProps {
   tone?: 'default' | 'dark'
   categoryImageUrl?: string
   imageAspect?: 'landscape' | 'portrait'
-  layout?: 'default' | 'journal' | 'gallery' | 'categories' | 'favorites' | 'articles' | 'programs' | 'arrivals' | 'mosaic' | 'tiles' | 'elevate' | 'team' | 'blog' | 'signature' | 'catalog' | 'categories' | 'category-grid' | 'news'
+  layout?: 'default' | 'journal' | 'gallery' | 'categories' | 'favorites' | 'articles' | 'programs' | 'arrivals' | 'mosaic' | 'tiles' | 'elevate' | 'team' | 'blog' | 'signature' | 'catalog' | 'categories' | 'category-grid' | 'news' | 'services' | 'portfolio' | 'cafe' | 'pitch' | 'icon-row' | 'gallery-text' | 'academies' | 'team-grid' | 'pricing' | 'photography-categories' | 'photography-journal' | 'photography-feed'
   eyebrow?: string
   viewAllLabel?: string
   /** Category tabs shown above a product grid. */
@@ -131,7 +135,7 @@ export interface ShowcaseProps {
 
 export interface TestimonialsProps {
   title: string
-  layout?: 'cards' | 'editorial' | 'carousel' | 'stories' | 'portraits'
+  layout?: 'cards' | 'editorial' | 'carousel' | 'stories' | 'portraits' | 'quotes' | 'quote-card'
   eyebrow?: string
   items: { quote: string; name: string; role: string; imageUrl?: string }[]
 }
@@ -141,7 +145,8 @@ export interface CtaProps {
   subtitle?: string
   button: string
   tone: 'primary' | 'soft'
-  layout?: 'default' | 'banner' | 'feature' | 'partner'
+  layout?: 'default' | 'banner' | 'feature' | 'partner' | 'backdrop' | 'newsletter'
+  inputPlaceholder?: string
   imageUrl?: string
   imagePosition?: string
   eyebrow?: string
@@ -152,7 +157,9 @@ export interface FooterProps {
   brand: string
   tagline: string
   brandIcon?: IconName
-  variant?: 'default' | 'studio' | 'dark' | 'bakery' | 'boutique' | 'elevate'
+  /** Optional logo image used in place of the brand icon. */
+  logoUrl?: string
+  variant?: 'default' | 'studio' | 'dark' | 'bakery' | 'boutique' | 'elevate' | 'salon' | 'cafe' | 'sport' | 'photography'
   columns: {
     title: string
     links: string[]
@@ -161,7 +168,9 @@ export interface FooterProps {
     details?: { icon: IconName; text: string }[]
   }[]
   socialLinks?: { platform: 'instagram' | 'facebook' | 'youtube' | 'linkedin' | 'pinterest'; label: string }[]
-  newsletter?: { placeholder: string; buttonLabel: string }
+  newsletter?: { placeholder: string; buttonLabel: string; title?: string; text?: string }
+  /** Paragraph under the tagline (salon variant). */
+  description?: string
   copyright: string
   legalLinks?: string[]
 }

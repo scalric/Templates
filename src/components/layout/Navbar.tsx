@@ -77,7 +77,7 @@ function CategoriesMenu() {
   )
 }
 
-/** Search icon that opens a search field in the navbar; submitting goes to the templates page. */
+/** Search icon that expands into an inline search field in the navbar. */
 function NavSearch() {
   const [open, setOpen] = useState(false)
   const [term, setTerm] = useState('')
@@ -133,11 +133,23 @@ function NavSearch() {
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
   const { pathname, search } = useLocation()
   const designs = useDesigns()
   const user = useAuth()
 
   useEffect(() => setOpen(false), [pathname, search])
+  useEffect(() => {
+    if (!open) return
+    const onKeyDown = (event: globalThis.KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false)
+        menuButtonRef.current?.focus()
+      }
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [open])
 
   const designsBadge = designs.length > 0 && (
     <span className="ml-1.5 rounded-full bg-brand-100 px-1.5 py-0.5 text-xs font-semibold text-brand-700">{designs.length}</span>
@@ -175,7 +187,7 @@ export function Navbar() {
           <NavSearch />
         </div>
 
-        <button className="shrink-0 rounded-lg p-2 text-ink hover:bg-ink/[0.06] lg:hidden" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'Close menu' : 'Open menu'}>
+        <button ref={menuButtonRef} className="shrink-0 rounded-lg p-2 text-ink hover:bg-ink/[0.06] lg:hidden" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'Close menu' : 'Open menu'}>
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>

@@ -20,7 +20,6 @@ export type CategoryId =
   | 'events'
   | 'education'
   | 'nonprofit'
-  | 'travel'
 
 export interface Category {
   id: CategoryId

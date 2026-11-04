@@ -1,0 +1,185 @@
+import type { Template } from '../../types/template'
+import { defineTemplate, footer, hero, navbar, showcase, story, testimonials } from '../builders'
+
+const img = (file: string) => `/images/pitchpoint/${file}`
+
+export const footballClubTemplates: Template[] = [
+  defineTemplate({
+    slug: 'pitch-point-football-club',
+    name: 'Pitchpoint Football Club',
+    tagline: 'Football for everyone: youth academy and training',
+    description:
+      'A bold sports-club template with a full-bleed training hero, two highlight cards, a welcome section with club stats and academy sign-up buttons.',
+    category: 'sports',
+    tags: ['football', 'club', 'academy', 'sports', 'training'],
+    price: 'free',
+    popularity: 73,
+    createdAt: '2026-11-04',
+    isNew: true,
+    author: 'Templates Studio',
+    highlights: [
+      'Full-bleed hero with a bold headline and call to action',
+      'Highlight cards with coached-training photos',
+      'Welcome section with club stats',
+      'Academy sign-up buttons',
+    ],
+    includedPages: ['Home', 'About', 'Academy', 'Training', 'Pricing', 'Blog', 'Contact'],
+    theme: {
+      primary: '#0b3bc4',
+      primaryText: '#ffffff',
+      secondary: '#eaf0ff',
+      background: '#ffffff',
+      text: '#0b1220',
+      muted: '#55627a',
+      radius: 'sharp',
+      headingFont: 'sans',
+    },
+    sections: [
+      navbar({
+        brand: 'Pitchpoint',
+        icon: 'trophy',
+        layout: 'pitch',
+        links: ['Home', 'About', 'Academy', 'Training', 'Pricing', 'Blog', 'Contact'],
+        cta: 'Get Started',
+        showSearch: true,
+      }),
+      hero({
+        layout: 'pitch',
+        title: 'Football for\nEveryone.',
+        subtitle: 'Coached sessions for every age, from first touches to first-team football.',
+        primaryCta: 'Join Academy',
+        imageLabel: 'Coach with young players planning a play on a tactics board',
+        imageIcon: 'trophy',
+        imageUrl: img('hero.webp'),
+        imagePosition: 'center 30%',
+      }),
+      showcase({
+        title: '',
+        variant: 'cards',
+        layout: 'pitch',
+        items: [
+          { title: 'Positive learning environment', imageUrl: img('drills.webp'), imagePosition: 'center 40%' },
+          { title: 'Over 90% progression', imageUrl: img('indoor.webp'), imagePosition: 'center 35%' },
+          { title: 'Friendship on and off the pitch', imageUrl: img('card-friends.webp'), imagePosition: 'center 30%' },
+        ],
+      }),
+      story({
+        layout: 'pitch',
+        eyebrow: 'Welcome',
+        title: 'Welcome to Pitchpoint Football Club, the number one academy for developing youth footballers across the region.',
+        highlight: 'Pitchpoint Football Club',
+        description: 'Qualified coaches, floodlit pitches and a supportive community for players aged 6 to 18.',
+        images: [],
+        quote: '',
+        stats: [
+          { icon: 'users', value: '12', label: 'Teams' },
+          { icon: 'users', value: '24', label: 'Coaches' },
+          { icon: 'users', value: '350', label: 'Active players' },
+          { icon: 'trophy', value: '40', label: 'Trophies' },
+          { icon: 'calendar', value: '18', label: 'Years' },
+        ],
+        secondaryButtonLabel: 'Register now',
+        buttonLabel: 'Join Academy',
+      }),
+      showcase({
+        title: '',
+        variant: 'cards',
+        layout: 'icon-row',
+        items: [
+          { title: 'Youth Academy', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', linkLabel: 'Learn more', icon: 'users' },
+          { title: 'U-20 Junior Academy', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', linkLabel: 'Learn more', icon: 'star' },
+          { title: 'Senior Football Club', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', linkLabel: 'Learn more', icon: 'shield' },
+          { title: 'Regional League', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', linkLabel: 'Learn more', icon: 'globe' },
+        ],
+      }),
+      story({
+        layout: 'teamwork',
+        eyebrow: 'Join us',
+        title: 'Teamwork Makes\nthe Dream Work',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
+        images: [{ imageUrl: img('teamwork-banner.webp'), label: 'Young players in a team huddle under a blue sky', imagePosition: 'center 40%' }],
+        quote: '',
+        buttonLabel: 'Join Team',
+      }),
+      showcase({
+        title: 'Activity Gallery',
+        subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        variant: 'cards',
+        layout: 'gallery-text',
+        buttonLabel: 'Learn more',
+        items: [
+          { title: 'Warm-up circle', imageUrl: img('gallery-hands.webp'), imagePosition: 'center' },
+          { title: 'Passing drills', imageUrl: img('gallery-kids.webp'), imagePosition: 'center' },
+          { title: 'Match-day portrait', imageUrl: img('match-day-portrait.png'), imagePosition: 'center 40%' },
+          { title: 'Coaching on the pitch', imageUrl: img('gallery-coach.webp'), imagePosition: 'center' },
+        ],
+      }),
+      showcase({
+        title: 'Our Academies',
+        subtitle: 'Multiple centres. One big family.',
+        variant: 'cards',
+        layout: 'academies',
+        items: [
+          { title: 'Yorkshire Academy', description: 'Leeds', imageUrl: img('academy-yorkshire.webp'), imagePosition: 'center 35%' },
+          { title: 'Manchester Academy', description: 'Manchester', imageUrl: img('academy-manchester.webp'), imagePosition: 'center' },
+          { title: 'Liverpool Academy', description: 'Liverpool', imageUrl: img('academy-liverpool.webp'), imagePosition: 'center' },
+        ],
+      }),
+      showcase({
+        title: 'Our Brilliant Team',
+        variant: 'cards',
+        layout: 'team-grid',
+        items: [
+          { title: 'James L. Jackson', description: 'Head Coach', imageUrl: img('team-james.webp'), imagePosition: 'center top' },
+          { title: 'Mark Johnson', description: 'Assistant Coach', imageUrl: img('team-mark.webp'), imagePosition: 'center top' },
+          { title: 'Paul Evans', description: 'Coach', imageUrl: img('team-paul.webp'), imagePosition: 'center top' },
+          { title: 'Sam Parker', description: 'Coach', imageUrl: img('team-sam.webp'), imagePosition: 'center top' },
+        ],
+      }),
+      showcase({
+        title: 'Pricing Plan',
+        variant: 'cards',
+        layout: 'pricing',
+        items: [
+          { title: 'Pro Plan', price: '$99/mo', tag: 'Most Popular', description: 'Advanced Training\nMatch Access\nPerformance Reports\n1-on-1 Sessions', linkLabel: 'Get Started' },
+          { title: 'Pro Plan', price: '$199/mo', tag: 'Best Value', description: 'Advanced Training\nMatch Access\nPerformance Reports\n1-on-1 Sessions', linkLabel: 'Get Started' },
+        ],
+      }),
+      testimonials({
+        layout: 'quote-card',
+        title: 'What Learners Say',
+        items: [
+          { quote: 'Pitchpoint’s coaching has really improved my skills and confidence. The training is professional, fun and challenging. I’m more prepared for matches than ever!', name: 'Arjun Sharma', role: 'U17 Player', imageUrl: img('testimonial-arjun.webp') },
+        ],
+      }),
+      footer({
+        variant: 'sport',
+        brand: 'Pitchpoint',
+        brandIcon: 'trophy',
+        tagline: 'Train. Play. Achieve.',
+        logoUrl: img('footer-logo.webp'),
+        socialLinks: [
+          { platform: 'facebook', label: 'Facebook' },
+          { platform: 'youtube', label: 'YouTube' },
+          { platform: 'instagram', label: 'Instagram' },
+          { platform: 'linkedin', label: 'LinkedIn' },
+        ],
+        columns: [
+          { title: 'Navigation', links: ['Home', 'About', 'Academy', 'Training', 'Pricing'] },
+          { title: 'Quick Links', links: ['Blog', 'Contact', 'FAQs', 'Privacy Policy', 'Terms & Conditions'] },
+          {
+            title: 'Contact',
+            links: [],
+            details: [
+              { icon: 'map-pin', text: 'Pitchpoint Ground, Park Road, Kolkata' },
+              { icon: 'phone', text: '+91 98600 00006' },
+              { icon: 'mail', text: 'info@pitchpoint.club' },
+            ],
+          },
+        ],
+        newsletter: { title: 'Our Newsletters', placeholder: 'Email', buttonLabel: 'Submit' },
+        copyright: '© 2026 Pitchpoint Football Club. All rights reserved.',
+      }),
+    ],
+  }),
+]

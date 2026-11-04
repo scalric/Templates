@@ -19,7 +19,6 @@ export const categories: Category[] = [
   { id: 'events', label: 'Events & Weddings', description: 'Planners and studios for weddings, parties and corporate events.', icon: 'sparkles', tint: 'bg-rose-50 text-rose-500' },
   { id: 'education', label: 'Education & Coaching', description: 'Institutes and coaches with courses, batches and enrolment.', icon: 'book-open', tint: 'bg-sky-50 text-sky-700' },
   { id: 'nonprofit', label: 'Non-profits', description: 'Charities and NGOs that need donations, stories and volunteers.', icon: 'handshake', tint: 'bg-green-50 text-green-700' },
-  { id: 'travel', label: 'Travel', description: 'Travel agencies and tour operators with packages and enquiries.', icon: 'plane', tint: 'bg-cyan-50 text-cyan-700' },
 ]
 
 export const categoryById = Object.fromEntries(categories.map((c) => [c.id, c])) as Record<

@@ -1,0 +1,146 @@
+import type { Template } from '../../types/template'
+import { cta, defineTemplate, footer, hero, navbar, showcase, story } from '../builders'
+
+const img = (file: string) => `/images/lens-light/${file}`
+
+export const photographyTemplates: Template[] = [
+  defineTemplate({
+    slug: 'lens-and-light-photography',
+    name: 'Lens & Light Photography',
+    tagline: 'Honest photographs. Real stories. Beautifully remembered.',
+    description:
+      'A warm, editorial photography portfolio with full-bleed imagery, six gallery categories, a photographer introduction, recent stories and a newsletter.',
+    category: 'creative',
+    tags: ['photography', 'portfolio', 'gallery', 'weddings', 'travel'],
+    price: 'free',
+    popularity: 88,
+    createdAt: '2026-11-04',
+    isNew: true,
+    author: 'Templates Studio',
+    highlights: [
+      'Full-width landscape hero with portfolio calls to action',
+      'Six image-led photography galleries',
+      'Photographer introduction with experience and travel stats',
+      'Recent stories, Instagram strip and newsletter signup',
+    ],
+    includedPages: ['Home', 'Portfolio', 'Blog', 'About', 'Services', 'Contact'],
+    theme: {
+      primary: '#9b7a5d',
+      primaryText: '#ffffff',
+      secondary: '#e9e0d6',
+      background: '#f8f4ee',
+      text: '#1e1a16',
+      muted: '#70665d',
+      radius: 'sharp',
+      headingFont: 'sans',
+    },
+    sections: [
+      navbar({
+        brand: 'MENON',
+        subtitle: 'Photographer',
+        icon: 'camera',
+        links: ['Home', 'Portfolio', 'Blog', 'About', 'Services', 'Contact'],
+        cta: 'View portfolio',
+        layout: 'photography',
+      }),
+      hero({
+        layout: 'photography',
+        eyebrow: 'Hey, I’m Menon',
+        title: 'Capturing\nreal moments',
+        subtitle: 'I’m a professional photographer and storyteller. I capture moments, emotions and the beauty in everything around us.',
+        primaryCta: 'View portfolio',
+        secondaryCta: 'Read stories',
+        imageLabel: 'Photographer capturing the mountains beside a quiet lake',
+        imageIcon: 'camera',
+        imageUrl: img('hero-jetty.webp'),
+        imagePosition: 'center 52%',
+      }),
+      showcase({
+        layout: 'photography-categories',
+        variant: 'cards',
+        title: 'Explore my work',
+        buttonLabel: 'View all portfolio',
+        items: [
+          { title: 'Portraits', imageUrl: img('portrait-provided.webp'), icon: 'camera', linkLabel: 'View gallery' },
+          { title: 'Fashion', imageUrl: img('fashion.webp'), icon: 'sparkles', linkLabel: 'View gallery' },
+          { title: 'Landscape', imageUrl: img('landscape-van.webp'), icon: 'globe', linkLabel: 'View gallery' },
+          { title: 'Wildlife', imageUrl: img('wildlife.webp'), icon: 'leaf', linkLabel: 'View gallery' },
+          { title: 'Weddings', imageUrl: img('wedding.webp'), icon: 'heart', linkLabel: 'View gallery' },
+          { title: 'Commercial', imageUrl: img('commercial.webp'), icon: 'camera', linkLabel: 'View gallery' },
+        ],
+      }),
+      story({
+        layout: 'photography',
+        eyebrow: 'About me',
+        title: 'Hi, I’m Menon',
+        description:
+          'Photography found me years ago and it changed the way I see the world. It’s more than taking pictures — it’s about preserving memories, telling stories and connecting with people.',
+        images: [
+          { imageUrl: img('about-photographer.webp'), label: 'Menon photographing in the mountains', imagePosition: 'center 42%' },
+          { imageUrl: img('about-seaside-provided.webp'), label: 'A traveler looking out across the sea', imagePosition: 'center 48%' },
+          { imageUrl: img('about-portrait-provided.webp'), label: 'Black-and-white portrait of Menon with a camera', imagePosition: 'center 36%' },
+        ],
+        quote: 'Stories. Dreams. Chapters.',
+        stats: [
+          { icon: 'camera', value: '12+', label: 'Years experience' },
+          { icon: 'map-pin', value: '28', label: 'Countries explored' },
+          { icon: 'trophy', value: '100+', label: 'Awards won' },
+        ],
+        buttonLabel: 'More about me',
+      }),
+      showcase({
+        layout: 'photography-journal',
+        variant: 'cards',
+        title: 'Latest stories',
+        buttonLabel: 'View all posts',
+        items: [
+          { title: 'Hiking the Canadian Rockies with my camera', tag: 'Travel', description: 'May 12, 2024  ·  5 min read', imageUrl: img('story-rockies-provided.webp'), icon: 'globe' },
+          { title: 'My favorite camera settings for sharp photos', tag: 'Gear', description: 'May 8, 2024  ·  5 min read', imageUrl: img('story-camera.webp'), icon: 'camera' },
+          { title: '5 tips for natural wedding photography', tag: 'Wedding', description: 'May 3, 2024  ·  7 min read', imageUrl: img('story-wedding.webp'), icon: 'heart' },
+          { title: 'A week in Amalfi Coast, Italy', tag: 'Travel', description: 'April 28, 2024  ·  4 min read', imageUrl: img('social-amalfi.webp'), icon: 'globe' },
+        ],
+      }),
+      showcase({
+        layout: 'photography-feed',
+        variant: 'cards',
+        title: 'Follow my journey on Instagram',
+        subtitle: '@menon.photography',
+        items: [
+          { title: 'Mountain light', imageUrl: img('social-lake.webp'), icon: 'globe' },
+          { title: 'Wild encounters', imageUrl: img('social-elephant.webp'), icon: 'leaf' },
+          { title: 'Portraits', imageUrl: img('social-portrait.webp'), icon: 'camera' },
+          { title: 'Coastlines', imageUrl: img('social-fourth-provided.webp'), icon: 'waves' },
+          { title: 'On the road', imageUrl: img('social-trail.webp'), icon: 'camera' },
+        ],
+      }),
+      cta({
+        layout: 'newsletter',
+        title: 'Stay inspired',
+        subtitle: 'Get photography tips, behind the scenes and travel stories straight to your inbox.',
+        button: 'Subscribe',
+        inputPlaceholder: 'Your email address',
+        tone: 'soft',
+      }),
+      footer({
+        variant: 'photography',
+        brand: 'MENON',
+        brandIcon: 'camera',
+        tagline: 'Photographer',
+        description: 'Let’s create something meaningful together.',
+        columns: [
+          { title: 'Pages', links: ['Home', 'Portfolio', 'Blog', 'About', 'Contact'] },
+          { title: 'Portfolio', links: ['Portraits', 'Weddings', 'Fashion', 'Wildlife', 'Commercial'] },
+          { title: 'Resources', links: ['Presets', 'Client guide', 'Behind the scenes', 'Print shop'] },
+          { title: 'Let’s connect', links: ['hello@menonphotography.com', 'Cape Town, South Africa'] },
+        ],
+        socialLinks: [
+          { platform: 'instagram', label: 'Instagram' },
+          { platform: 'youtube', label: 'YouTube' },
+          { platform: 'pinterest', label: 'Pinterest' },
+          { platform: 'facebook', label: 'Facebook' },
+        ],
+        copyright: '© 2024 Menon Photography. All rights reserved.',
+      }),
+    ],
+  }),
+]

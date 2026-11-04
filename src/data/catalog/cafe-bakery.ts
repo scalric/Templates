@@ -1,0 +1,120 @@
+import type { Template } from '../../types/template'
+import { defineTemplate, footer, hero, navbar, showcase, story } from '../builders'
+
+const img = (file: string) => `/images/crumb-and-cup/${file}`
+
+export const cafeBakeryTemplates: Template[] = [
+  defineTemplate({
+    slug: 'crumb-and-cup-cafe',
+    name: 'Crumb & Cup Café',
+    tagline: 'Fresh bakes, espresso and a warm corner to stay awhile',
+    description:
+      'A warm café and bakery template with a welcoming hero, a "Why choose us" section, a menu of coffee and bakes with prices, a visit-us gallery and a newsletter footer.',
+    category: 'bakery',
+    tags: ['cafe', 'bakery', 'coffee', 'pastry', 'menu'],
+    price: 'free',
+    popularity: 79,
+    createdAt: '2026-11-04',
+    isNew: true,
+    author: 'Templates Studio',
+    highlights: [
+      'Welcoming hero with a view-menu call to action',
+      'Why choose us cards with photos',
+      'Menu highlights with prices',
+      'Visit-us gallery and newsletter footer',
+    ],
+    includedPages: ['Home', 'About', 'Menu', 'Gallery', 'Blog', 'Contact'],
+    theme: {
+      primary: '#7b4a2b',
+      primaryText: '#ffffff',
+      secondary: '#f3e9dc',
+      background: '#fbf6ef',
+      text: '#2e1f14',
+      muted: '#6f5a4a',
+      radius: 'soft',
+      headingFont: 'serif',
+    },
+    sections: [
+      navbar({
+        brand: 'Crumb & Cup',
+        icon: 'croissant',
+        subtitle: 'Coffee & Bakery',
+        layout: 'cafe',
+        topLeft: 'Good Coffee, Good Mood',
+        announcement: 'Mon–Sun: 7:00 AM – 9:00 PM',
+        links: ['Home', 'About', 'Menu', 'Gallery', 'Blog', 'Contact'],
+        cta: 'Order online',
+        showSearch: false,
+      }),
+      hero({
+        layout: 'cafe',
+        eyebrow: 'Welcome to Our Café',
+        title: 'Good Coffee,\nGreat Moments',
+        subtitle: 'Savor handcrafted coffee, fresh pastries and cozy vibes. Your perfect daily escape.',
+        primaryCta: 'View our menu',
+        imageLabel: 'Coffee and fresh pastries on a wooden table',
+        imageIcon: 'croissant',
+        imageUrl: img('hero.webp'),
+        imagePosition: 'center',
+      }),
+      showcase({
+        title: 'Why Choose Us?',
+        subtitle: 'We are passionate about quality, comfort and creating memorable moments for every guest.',
+        variant: 'cards',
+        layout: 'cafe',
+        items: [
+          { title: 'Quality Coffee', description: 'We source the finest beans and brew every cup to perfection.', linkLabel: 'Learn more', icon: 'flame', imageUrl: img('why-coffee.webp'), imagePosition: 'center' },
+          { title: 'Fresh & Delicious', description: 'From pastries to meals, everything is made fresh daily.', linkLabel: 'Learn more', icon: 'chef-hat', imageUrl: img('why-dessert.webp'), imagePosition: 'center' },
+          { title: 'Cozy Atmosphere', description: 'A warm and welcoming space to relax, work or catch up.', linkLabel: 'Learn more', icon: 'leaf', imageUrl: img('why-cafe.webp'), imagePosition: 'center' },
+        ],
+      }),
+      showcase({
+        title: 'Our Menu Highlights',
+        subtitle: 'Handcrafted with love, made for you.',
+        variant: 'products',
+        layout: 'cafe',
+        buttonLabel: 'View full menu',
+        items: [
+          { title: 'Cappuccino', price: '₹220', icon: 'flame', imageUrl: img('menu-cappuccino.webp'), imagePosition: 'center' },
+          { title: 'Chocolate Cake', price: '₹260', icon: 'croissant', imageUrl: img('menu-cake.webp'), imagePosition: 'center' },
+          { title: 'Chicken Sandwich', price: '₹380', icon: 'wheat', imageUrl: img('menu-sandwich.webp'), imagePosition: 'center' },
+          { title: 'Iced Latte', price: '₹240', icon: 'flame', imageUrl: img('menu-iced-latte.webp'), imagePosition: 'center' },
+        ],
+      }),
+      story({
+        layout: 'cafe',
+        eyebrow: 'Visit us',
+        title: 'Visit Us Today',
+        description: 'We would love to welcome you to our café. Come for the coffee, stay for the good vibes!',
+        images: [
+          { imageUrl: img('visit-exterior.webp'), label: 'Crumb & Cup storefront with outdoor tables', imagePosition: 'center' },
+          { imageUrl: img('visit-pour.webp'), label: 'Barista pouring milk into a latte', imagePosition: 'center' },
+          { imageUrl: img('visit-interior.webp'), label: 'Warm café interior with pendant lights', imagePosition: 'center' },
+        ],
+        quote: '',
+        buttonLabel: 'Find our location',
+      }),
+      footer({
+        variant: 'cafe',
+        brand: 'Crumb & Cup Café',
+        brandIcon: 'croissant',
+        tagline: 'Fresh bakes, great coffee and a warm place to sit.',
+        newsletter: {
+          title: 'Stay in the Loop',
+          text: 'Subscribe to get updates on new menu items, special offers and events.',
+          placeholder: 'Your email address',
+          buttonLabel: 'Subscribe',
+        },
+        socialLinks: [
+          { platform: 'instagram', label: 'Instagram' },
+          { platform: 'facebook', label: 'Facebook' },
+          { platform: 'youtube', label: 'YouTube' },
+          { platform: 'pinterest', label: 'Pinterest' },
+        ],
+        columns: [],
+        legalLinks: ['Privacy Policy', 'Terms & Conditions'],
+        copyright: '© 2026 Crumb & Cup Café. All rights reserved.',
+      }),
+    ],
+  }),
+]

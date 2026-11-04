@@ -11,6 +11,7 @@ import { SectionHeading } from '../components/ui/SectionHeading'
 import { categoryById } from '../data/categories'
 import { templateBySlug, templates } from '../data/templates'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { useViewportDevice } from '../hooks/useViewportDevice'
 import { designStore } from '../lib/designStore'
 import { ScaledPage } from '../renderer/ScaledPage'
 import { SiteRenderer } from '../renderer/SiteRenderer'
@@ -20,7 +21,10 @@ export default function TemplateDetailsPage() {
   const { slug } = useParams()
   const template = templateBySlug(slug)
   const navigate = useNavigate()
-  const [device, setDevice] = useState<Device>('desktop')
+  // Preview follows the visitor's screen (phone, tablet or desktop) until they pick a device themselves.
+  const viewportDevice = useViewportDevice()
+  const [chosenDevice, setChosenDevice] = useState<Device | null>(null)
+  const device = chosenDevice ?? viewportDevice
   useDocumentTitle(template?.name)
 
   if (!template) {
@@ -55,13 +59,13 @@ export default function TemplateDetailsPage() {
         <section aria-label="Template preview" className="min-w-0">
           <div className="mb-4 flex items-center justify-between gap-3">
             <p className="text-sm font-medium text-slate-500">Full-page preview</p>
-            <DeviceToggle value={device} onChange={setDevice} />
+            <DeviceToggle value={device} onChange={setChosenDevice} />
           </div>
           <div className="rounded-3xl bg-slate-100 p-3 sm:p-6">
             <div className="mx-auto overflow-hidden rounded-2xl bg-white shadow-lift ring-1 ring-slate-900/5 transition-[max-width] duration-300" style={{ maxWidth: DEVICE_WIDTH[device] }}>
               <BrowserBar label={`${template.slug}.templates.site`} />
               <div className="max-h-[78vh] overflow-y-auto overscroll-contain" tabIndex={0} role="region" aria-label="Scrollable template preview">
-                <div className="pointer-events-none select-none">
+                <div className="select-none">
                   <ScaledPage key={device} width={DEVICE_WIDTH[device]}>
                     <SiteRenderer document={template.document} device={device} />
                   </ScaledPage>

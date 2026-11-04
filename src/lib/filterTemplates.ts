@@ -16,12 +16,23 @@ export const DEFAULT_FILTERS: TemplateFilters = { q: '', category: 'all', price:
 const SORTS: SortKey[] = ['popular', 'newest', 'az']
 const PRICES: PriceFilter[] = ['all', 'free', 'premium']
 
+function normalizeSearchText(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/['’]/g, '')
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
 export function parseFilters(sp: URLSearchParams): TemplateFilters {
-  const category = sp.get('category') ?? 'all'
-  const price = sp.get('price') as PriceFilter | null
-  const sort = sp.get('sort') as SortKey | null
+  const category = (sp.get('category') ?? 'all').trim()
+  const price = (sp.get('price') ?? 'all').trim() as PriceFilter | 'all'
+  const sort = (sp.get('sort') ?? 'popular').trim() as SortKey | 'popular'
+  const q = sp.get('q') ?? ''
   return {
-    q: sp.get('q') ?? '',
+    q: q.trim(),
     category: category === 'all' || category in categoryById ? (category as TemplateFilters['category']) : 'all',
     price: price && PRICES.includes(price) ? price : 'all',
     sort: sort && SORTS.includes(sort) ? sort : 'popular',
@@ -31,7 +42,8 @@ export function parseFilters(sp: URLSearchParams): TemplateFilters {
 /** Only non-default values are written, which keeps URLs short and shareable. */
 export function toSearchParams(f: TemplateFilters): URLSearchParams {
   const sp = new URLSearchParams()
-  if (f.q.trim()) sp.set('q', f.q)
+  const q = f.q.trim()
+  if (q) sp.set('q', q)
   if (f.category !== 'all') sp.set('category', f.category)
   if (f.price !== 'all') sp.set('price', f.price)
   if (f.sort !== 'popular') sp.set('sort', f.sort)
@@ -43,14 +55,18 @@ export function hasActiveFilters(f: TemplateFilters): boolean {
 }
 
 export function filterTemplates(list: Template[], f: TemplateFilters): Template[] {
-  const terms = f.q.toLowerCase().split(/\s+/).filter(Boolean)
+  const terms = normalizeSearchText(f.q).split(/\s+/).filter(Boolean)
   const result = list.filter((t) => {
     if (f.category !== 'all' && t.category !== f.category) return false
     if (f.price !== 'all' && t.price !== f.price) return false
     if (!terms.length) return true
-    const haystack = [t.name, t.tagline, t.description, categoryById[t.category].label, ...t.tags]
-      .join(' ')
-      .toLowerCase()
+    const haystack = normalizeSearchText([
+      t.name,
+      t.tagline,
+      t.description,
+      categoryById[t.category].label,
+      ...t.tags,
+    ].join(' '))
     return terms.every((term) => haystack.includes(term))
   })
 
