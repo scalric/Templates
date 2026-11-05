@@ -5,3 +5,5 @@ dist
 
 # Local changelog, not for the repo
 CHANGELOG.md
+FUNCTIONALITY-AUDIT.md
+
